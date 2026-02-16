@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSC 벨리시마 일본·대만 13박 크루즈 — 크루즈링크</title>
+<style>
+:root {
+  --navy: #1a237e;
+  --navy-light: #283593;
+  --navy-bg: #e8eaf6;
+  --orange: #ff6f00;
+  --orange-hover: #e65100;
+  --bg: #f5f7fa;
+  --card-border: #cfd8dc;
+  --text: #333;
+  --text-light: #666;
+  --white: #fff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
+.container { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+/* Header */
+header { background:var(--navy); color:#fff; padding:14px 0; }
+header .container { display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:22px; } header h1 span { color:var(--orange); }
+header a { color:#fff; text-decoration:none; font-size:13px; opacity:0.7; }
+header a:hover { opacity:1; }
+
+/* Cruise List Item (1번 디자인) */
+.cruise-list-item {
+  background:#fff; border:2px solid var(--card-border); border-radius:16px;
+  display:flex; overflow:hidden; margin:24px auto; max-width:1100px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cruise-list-item:hover { border-color:var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+.cruise-list-item .item-img { flex:0 0 280px; position:relative; }
+.cruise-list-item .item-img img { width:100%; height:100%; object-fit:cover; min-height:200px; }
+.cruise-list-item .item-img .operator-logo {
+  position:absolute; bottom:12px; left:12px; background:#fff; border-radius:8px;
+  padding:4px 8px; box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.cruise-list-item .item-img .operator-logo img { height:24px; }
+.cruise-list-item .item-body { flex:1; padding:20px 24px; display:flex; flex-direction:column; }
+.item-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+.item-tag { font-size:12px; padding:3px 10px; border-radius:6px; background:var(--navy-bg); color:var(--navy); font-weight:600; }
+.item-operator { font-size:13px; color:var(--text-light); margin-bottom:4px; }
+.item-title { font-size:20px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.item-route { font-size:14px; color:var(--text); margin-bottom:10px; }
+.item-route .pin { color:#e53935; }
+.item-hashtags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; }
+.item-hashtag { font-size:12px; padding:4px 10px; border-radius:20px; border:1px solid #ddd; color:var(--navy); font-weight:600; background:#f8f9ff; }
+.item-bottom { display:flex; align-items:center; justify-content:space-between; margin-top:auto; }
+.item-info { font-size:13px; color:var(--text-light); display:flex; gap:16px; }
+.item-price { text-align:right; }
+.item-price .price { font-size:28px; font-weight:900; color:var(--orange); }
+.item-price .price-unit { font-size:13px; color:var(--text-light); }
+.item-buttons { display:flex; gap:8px; margin-top:12px; }
+.btn-detail { padding:10px 24px; border:2px solid var(--navy); background:#fff; color:var(--navy); border-radius:8px; font-weight:700; font-size:14px; cursor:pointer; transition:all 0.2s; }
+.btn-detail:hover { background:var(--navy-bg); }
+.btn-cta { padding:10px 24px; background:var(--orange); color:#fff; border:none; border-radius:8px; font-weight:700; font-size:14px; cursor:pointer; transition:all 0.2s; }
+.btn-cta:hover { background:var(--orange-hover); }
+
+/* Hero */
+.detail-hero {
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+  color:#fff; padding:48px 0 40px;
+}
+.hero-sub { font-size:14px; opacity:0.8; margin-bottom:8px; }
+.hero-title { font-size:32px; font-weight:900; margin-bottom:12px; }
+.hero-meta { font-size:14px; opacity:0.8; display:flex; gap:16px; flex-wrap:wrap; }
+.hero-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+.hero-tag { font-size:12px; padding:4px 12px; border-radius:20px; background:rgba(255,255,255,0.15); color:#fff; backdrop-filter:blur(4px); }
+.hero-price { margin-top:20px; }
+.hero-price .big { font-size:36px; font-weight:900; }
+.hero-price .unit { font-size:14px; opacity:0.8; }
+.hero-cta { display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; }
+.hero-cta .btn { padding:12px 28px; border-radius:8px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block; }
+.hero-cta .btn-primary { background:var(--orange); color:#fff; border:none; }
+.hero-cta .btn-kakao { background:#fee500; color:#3c1e1e; border:none; }
+.hero-cta .btn-white { background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.5); }
+
+/* Main Ship Image */
+.main-ship-image { border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.15); margin:24px auto; }
+.main-ship-image img { width:100%; max-height:400px; object-fit:cover; display:block; }
+
+/* Info Bar */
+.info-bar {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:24px 0;
+}
+.info-item { background:#fff; border-radius:12px; padding:16px; text-align:center; border:1px solid var(--card-border); }
+.info-item .icon { font-size:24px; margin-bottom:4px; }
+.info-item .label { font-size:12px; color:var(--text-light); }
+.info-item .value { font-size:16px; font-weight:700; color:var(--navy); }
+
+/* Section */
+.section { padding:40px 0; }
+.section-alt { background:#fff; }
+.section-title { font-size:22px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.section-subtitle { font-size:14px; color:var(--text-light); margin-bottom:24px; }
+
+/* Day Cards */
+.day-card { background:#fff; border:2px solid var(--navy-bg); border-radius:16px; margin-bottom:24px; overflow:hidden; transition:border-color 0.2s; }
+.day-card:hover { border-color:var(--navy); }
+.day-card-header { display:flex; align-items:center; gap:16px; padding:20px 24px; background:linear-gradient(135deg,#e8eaf6,#f5f5f5); }
+.day-num { background:var(--navy); color:#fff; border-radius:10px; padding:6px 14px; font-weight:900; font-size:13px; white-space:nowrap; }
+.day-card.sea .day-num { background:#5c6bc0; }
+.day-port-name { font-size:20px; font-weight:800; color:var(--navy); }
+.day-card.sea .day-port-name { color:#5c6bc0; }
+.day-time { font-size:12px; color:var(--text-light); }
+.day-card-image { width:100%; max-height:300px; object-fit:cover; display:block; }
+.day-card-body { padding:24px; }
+.day-desc { font-size:14px; color:#555; line-height:1.8; }
+.day-images { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:16px; }
+.day-images img { width:100%; height:120px; object-fit:cover; border-radius:8px; }
+.day-toggle { display:block; width:100%; padding:12px; background:#f5f5f5; border:none; border-top:1px solid var(--navy-bg); cursor:pointer; font-size:13px; color:var(--navy); font-weight:600; }
+.day-toggle:hover { background:var(--navy-bg); }
+.day-expandable { display:none; padding:0 24px 16px; }
+.day-expandable.open { display:block; }
+
+/* Ship Info */
+.ship-specs { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.spec-item { background:var(--navy-bg); padding:16px; border-radius:10px; text-align:center; }
+.spec-item .val { font-size:22px; font-weight:800; color:var(--navy); }
+.spec-item .lbl { font-size:12px; color:var(--text-light); }
+
+/* Tabs */
+.tabs { display:flex; gap:0; border-bottom:2px solid var(--navy-bg); margin-bottom:20px; overflow-x:auto; }
+.tab { padding:12px 20px; cursor:pointer; font-size:14px; font-weight:600; color:var(--text-light); border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:all 0.2s; }
+.tab.active { color:var(--navy); border-bottom-color:var(--orange); }
+.tab:hover { color:var(--navy); }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+
+/* Cabin Cards */
+.cabin-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:16px; }
+.cabin-card { background:#fff; border:2px solid var(--card-border); border-radius:12px; overflow:hidden; transition:border-color 0.2s; }
+.cabin-card:hover { border-color:var(--navy); }
+.cabin-card img { width:100%; height:160px; object-fit:cover; }
+.cabin-card .cabin-info { padding:14px; }
+.cabin-card .cabin-name { font-size:14px; font-weight:700; color:var(--navy); }
+
+/* Dining/Entertainment list */
+.facility-item { display:flex; gap:16px; margin-bottom:16px; padding:16px; background:#f9f9f9; border-radius:12px; }
+.facility-item img { width:100px; height:80px; object-fit:cover; border-radius:8px; flex-shrink:0; }
+.facility-item .fi-name { font-size:15px; font-weight:700; color:var(--navy); }
+.facility-item .fi-desc { font-size:13px; color:var(--text-light); margin-top:4px; line-height:1.6; }
+
+/* Deck Plans */
+.deck-scroll { display:flex; gap:12px; overflow-x:auto; padding:10px 0; }
+.deck-card { min-width:220px; border:1px solid var(--card-border); border-radius:10px; overflow:hidden; flex-shrink:0; }
+.deck-card img { width:100%; height:170px; object-fit:contain; background:#f9f9f9; }
+.deck-card .deck-name { padding:10px; font-size:13px; text-align:center; color:var(--navy); font-weight:600; }
+
+/* Price Table */
+.price-table { width:100%; border-collapse:collapse; margin-top:16px; }
+.price-table th { background:var(--navy); color:#fff; padding:12px; text-align:left; font-size:13px; }
+.price-table td { padding:12px; border-bottom:1px solid var(--card-border); font-size:14px; }
+.price-table tr:hover td { background:#f5f5f5; }
+.price-highlight { color:var(--orange); font-weight:700; }
+
+/* Include/Exclude */
+.include-list { list-style:none; padding-left:28px; }
+.include-list li { padding:6px 0; font-size:14px; position:relative; }
+.include-list li::before { position:absolute; left:-28px; }
+.include-list.included li::before { content:'✅'; }
+.include-list.excluded li::before { content:'❌'; }
+
+/* CTA Section */
+.cta-section { background:linear-gradient(135deg,#1a237e,#0d47a1); color:#fff; padding:48px 0; text-align:center; }
+.cta-section h2 { font-size:24px; margin-bottom:12px; }
+.cta-section p { opacity:0.8; margin-bottom:24px; }
+.cta-buttons { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.cta-buttons .btn { padding:14px 32px; border-radius:8px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block; cursor:pointer; }
+
+/* Loading */
+.loading { text-align:center; padding:60px; }
+.spinner { display:inline-block; width:36px; height:36px; border:3px solid var(--card-border); border-top-color:var(--navy); border-radius:50%; animation:spin 0.8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* Footer */
+footer { background:var(--navy); color:#fff; padding:24px 0; text-align:center; font-size:12px; opacity:0.7; }
+
+@media (max-width:768px) {
+  .cruise-list-item { flex-direction:column; }
+  .cruise-list-item .item-img { flex:none; height:200px; }
+  .info-bar { grid-template-columns:repeat(2,1fr); }
+  .ship-specs { grid-template-columns:repeat(2,1fr); }
+  .hero-title { font-size:24px; }
+  .day-images { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>크루즈<span>링크</span></h1>
+    <a href="index.html">← 목록으로</a>
+  </div>
+</header>
+
+<!-- Loading State -->
+<div id="loading" class="loading">
+  <div class="spinner"></div>
+  <p style="margin-top:16px;color:#999;">Widgety API에서 데이터를 불러오는 중...</p>
+</div>
+
+<div id="content" style="display:none;">
+
+<!-- 1번 디자인: 리스트 아이템 -->
+<div class="container">
+  <div class="cruise-list-item" id="list-item"></div>
+</div>
+
+<!-- Hero -->
+<div class="detail-hero" id="hero"></div>
+
+<!-- Main Ship Image -->
+<div class="container">
+  <div class="main-ship-image" id="main-image"></div>
+</div>
+
+<!-- Info Bar -->
+<div class="container">
+  <div class="info-bar" id="info-bar"></div>
+</div>
+
+<!-- Itinerary -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">🗓️ 상세 일정</h2>
+    <p class="section-subtitle" id="itin-sub"></p>
+    <div id="itinerary"></div>
+  </div>
+</div>
+
+<!-- Ship Info -->
+<div class="section section-alt" id="ship-section"></div>
+
+<!-- Cabin & Price -->
+<div class="section" id="cabin-section"></div>
+
+<!-- Include/Exclude -->
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">📋 포함 / 불포함 사항</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px;">
+      <div>
+        <h3 style="font-size:16px;color:#2e7d32;margin-bottom:12px;">✅ 포함 사항</h3>
+        <ul class="include-list included">
+          <li>숙박 (선내 객실)</li>
+          <li>식사 (조식·중식·석식 뷔페 및 메인 레스토랑)</li>
+          <li>선내 엔터테인먼트 (공연, 수영장, 피트니스)</li>
+          <li>키즈 & 틴즈 클럽</li>
+          <li>객실 서비스 (기본)</li>
+          <li>기항지 셔틀버스 (일부)</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:16px;color:#c62828;margin-bottom:12px;">❌ 불포함 사항</h3>
+        <ul class="include-list excluded">
+          <li>항공편</li>
+          <li>스페셜티 레스토랑</li>
+          <li>음료 패키지 (주류/소프트드링크)</li>
+          <li>기항지 관광 (Shore Excursion)</li>
+          <li>스파 & 뷰티 트리트먼트</li>
+          <li>여행자 보험</li>
+          <li>Wi-Fi 패키지</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <h2>이 크루즈가 마음에 드셨나요?</h2>
+    <p>크루즈링크 전문 상담원이 최적의 객실과 가격을 안내해드립니다.</p>
+    <div class="cta-buttons">
+      <a href="tel:02-3788-9119" class="btn" style="background:var(--orange);color:#fff;">📞 문의하기</a>
+      <a href="https://pf.kakao.com/_xgYbJG" target="_blank" class="btn" style="background:#fee500;color:#3c1e1e;">💬 카카오톡 상담</a>
+      <a href="tel:02-3788-9119" class="btn" style="border:2px solid rgba(255,255,255,0.5);color:#fff;">☎️ 02-3788-9119</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<footer>
+  <div class="container">
+    크루즈링크 | 디플랫코리아 | Widgety API 테스트
+  </div>
+</footer>
+
+<script>
+const API_BASE = 'https://www.widgety.co.uk/api';
+const AUTH = 'app_id=fdb0159a2ae2c59f9270ac8e42676e6eb0fb7c36&token=03428626b23f5728f96bb58ff9bcf4bcb04f8ea258b07ed9fa69d8dd94b46b40';
+const CRUISE_REF = 'MSCBE20270504TYOTYO';
+const SHIP_SLUG = 'msc-bellissima';
+
+async function apiFetch(path) {
+  const sep = path.includes('?') ? '&' : '?';
+  const res = await fetch(`${API_BASE}/${path}${sep}${AUTH}`);
+  return res.json();
+}
+
+function stripHtml(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html || '';
+  return tmp.textContent || '';
+}
+
+function portNameKo(name) {
+  const map = {
+    'Tokyo':'도쿄','Kobe':'고베','Kochi':'고치','Hiroshima':'히로시마',
+    'Beppu':'벳푸','Naha':'나하','Miyako Islands':'미야코지마',
+    'Keelung (Chilung)':'지룽(기륭)','Kagoshima':'가고시마','Shimizu':'시미즈',
+    'Busan':'부산','Jeju Island':'제주도','Sasebo':'사세보',
+    'Ishigaki':'이시가키','Naha, Okinawa':'나하(오키나와)'
+  };
+  return map[name] || name;
+}
+
+async function loadPage() {
+  const [cruise, ship] = await Promise.all([
+    apiFetch(`holidays/dates/${CRUISE_REF}.json`),
+    apiFetch(`ships/${SHIP_SLUG}.json`)
+  ]);
+  
+  const from = new Date(cruise.date_from);
+  const to = new Date(cruise.date_to);
+  const nights = Math.round((to - from) / (1000*60*60*24));
+  const itin = cruise.itinerary?.days || [];
+  const prices = cruise.headline_prices?.cruise;
+  
+  // Build port list
+  const portDays = {};
+  itin.forEach(d => {
+    const loc = d.locations?.[0];
+    if(loc) {
+      if(!portDays[loc.name]) portDays[loc.name] = { loc, days: [] };
+      portDays[loc.name].days.push(d.day);
+    }
+  });
+  const uniquePorts = Object.keys(portDays);
+  const routeStr = uniquePorts.map(p => portNameKo(p)).join(' → ');
+  
+  const season = from.getMonth() >= 2 && from.getMonth() <= 4 ? '봄' : from.getMonth() >= 5 && from.getMonth() <= 7 ? '여름' : from.getMonth() >= 8 && from.getMonth() <= 10 ? '가을' : '겨울';
+  const weekStr = nights <= 7 ? '1주일' : nights <= 14 ? '2주일' : '3주일';
+  const minPrice = prices?.double?.from_inside ? `$${parseFloat(prices.double.from_inside).toLocaleString()}` : '문의';
+  
+  // === 1. List Item (1번 디자인) ===
+  document.getElementById('list-item').innerHTML = `
+    <div class="item-img">
+      <img src="${ship.cover_image_href}" alt="${ship.title}">
+      <div class="operator-logo"><img src="${ship.profile_image_href}" alt="MSC" style="height:28px;"></div>
+    </div>
+    <div class="item-body">
+      <div class="item-tags">
+        <span class="item-tag">아시아</span>
+        <span class="item-tag">${weekStr}</span>
+        <span class="item-tag">${season}</span>
+        <span class="item-tag">MSC</span>
+      </div>
+      <div class="item-operator">MSC · ${ship.title}</div>
+      <div class="item-title">일본·대만 ${nights}박 크루즈</div>
+      <div class="item-route"><span class="pin">📍</span> ${routeStr}</div>
+      <div class="item-hashtags">
+        <span class="item-hashtag">#일본크루즈</span>
+        <span class="item-hashtag">#아시아크루즈</span>
+        <span class="item-hashtag">#MSC크루즈</span>
+        <span class="item-hashtag">#${portNameKo(uniquePorts[0])}</span>
+        <span class="item-hashtag">#${portNameKo(uniquePorts[1])}</span>
+      </div>
+      <div class="item-bottom">
+        <div class="item-info">
+          <span>📅 ${from.getFullYear()}-${String(from.getMonth()+1).padStart(2,'0')}-${String(from.getDate()).padStart(2,'0')} ~ ${to.getFullYear()}-${String(to.getMonth()+1).padStart(2,'0')}-${String(to.getDate()).padStart(2,'0')}</span>
+          <span>🌙 ${nights}박</span>
+        </div>
+        <div>
+          <div class="item-price">
+            <span class="price">${minPrice}~</span>
+            <span class="price-unit">/1인</span>
+          </div>
+          <div class="item-buttons">
+            <button class="btn-detail" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">상세보기</button>
+            <button class="btn-cta">문의하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // === 2. Hero ===
+  document.getElementById('hero').innerHTML = `
+    <div class="container">
+      <p class="hero-sub">MSC Cruises · ${ship.title}</p>
+      <h1 class="hero-title">🚢 일본·대만 ${nights}박 크루즈</h1>
+      <div class="hero-meta">
+        <span>📅 ${from.getFullYear()}.${String(from.getMonth()+1).padStart(2,'0')}.${String(from.getDate()).padStart(2,'0')} ~ ${to.getFullYear()}.${String(to.getMonth()+1).padStart(2,'0')}.${String(to.getDate()).padStart(2,'0')}</span>
+        <span>🌙 ${nights}박 ${nights+1}일</span>
+        <span>🚢 ${ship.title}</span>
+        <span>🌏 ${(cruise.countries||[]).join(', ')}</span>
+      </div>
+      <div class="hero-tags">
+        <span class="hero-tag">#일본크루즈</span>
+        <span class="hero-tag">#아시아크루즈</span>
+        <span class="hero-tag">#MSC벨리시마</span>
+        ${uniquePorts.slice(0,4).map(p => `<span class="hero-tag">#${portNameKo(p)}</span>`).join('')}
+      </div>
+      <div class="hero-price">
+        <span class="big">${minPrice}~</span>
+        <span class="unit">/1인</span>
+      </div>
+      <div class="hero-cta">
+        <a href="tel:02-3788-9119" class="btn btn-primary">📞 문의하기</a>
+        <a href="https://pf.kakao.com/_xgYbJG" target="_blank" class="btn btn-kakao">💬 카카오톡 상담</a>
+        <a href="tel:02-3788-9119" class="btn btn-white">☎️ 02-3788-9119</a>
+      </div>
+    </div>
+  `;
+  
+  // === 3. Main Ship Image ===
+  document.getElementById('main-image').innerHTML = `<img src="${ship.cover_image_href}" alt="${ship.title}">`;
+  
+  // === 4. Info Bar ===
+  const facts = ship.ship_facts || {};
+  document.getElementById('info-bar').innerHTML = `
+    <div class="info-item"><div class="icon">🚢</div><div class="label">선박</div><div class="value">${ship.title}</div></div>
+    <div class="info-item"><div class="icon">🌙</div><div class="label">기간</div><div class="value">${nights}박 ${nights+1}일</div></div>
+    <div class="info-item"><div class="icon">🚪</div><div class="label">출발/도착</div><div class="value">${portNameKo(cruise.starts_at?.name)} → ${portNameKo(cruise.ends_at?.name)}</div></div>
+    <div class="info-item"><div class="icon">💰</div><div class="label">2인1실 기준</div><div class="value" style="color:var(--orange);">${minPrice}~</div></div>
+  `;
+  
+  // === 5. Itinerary (Day Cards) ===
+  document.getElementById('itin-sub').textContent = `${portNameKo(cruise.starts_at?.name)} 출발 → ${uniquePorts.length}개 기항지 → ${portNameKo(cruise.ends_at?.name)} 도착`;
+  
+  const totalDays = nights + 1;
+  const dayMap = {};
+  itin.forEach(d => { dayMap[d.day] = d; });
+  
+  let itinHtml = '';
+  for(let i = 1; i <= totalDays; i++) {
+    const d = dayMap[i];
+    if(d && d.locations?.[0]) {
+      const loc = d.locations[0];
+      const portName = portNameKo(loc.name);
+      const desc = stripHtml(loc.widgety_data?.description || '');
+      const images = loc.widgety_data?.images || loc.operator_data?.images || [];
+      const mainImg = images[0]?.href;
+      const arrTime = loc.arrival_time || '';
+      const depTime = loc.departure_time || '';
+      const timeStr = arrTime && depTime ? `${arrTime} 입항 ~ ${depTime} 출항` : depTime ? `${depTime} 출항` : arrTime ? `${arrTime} 입항` : '';
+      
+      itinHtml += `
+        <div class="day-card">
+          <div class="day-card-header">
+            <span class="day-num">DAY ${i}</span>
+            <div>
+              <div class="day-port-name">📍 ${portName} <span style="font-size:14px;font-weight:400;color:#666;">${loc.country}</span></div>
+              ${timeStr ? `<div class="day-time">⏰ ${timeStr}</div>` : ''}
+            </div>
+          </div>
+          ${mainImg ? `<img class="day-card-image" src="${mainImg}" alt="${portName}" loading="lazy">` : ''}
+          <div class="day-card-body">
+            <div class="day-desc">${desc.slice(0, 300)}${desc.length > 300 ? '...' : ''}</div>
+            ${images.length > 1 ? `
+              <div class="day-images">
+                ${images.slice(1, 4).map(img => `<img src="${img.href}" alt="${img.name || portName}" loading="lazy">`).join('')}
+              </div>
+            ` : ''}
+          </div>
+          ${desc.length > 300 ? `
+            <button class="day-toggle" onclick="toggleDay(this)">더보기 ▼</button>
+            <div class="day-expandable">
+              <div class="day-desc">${desc}</div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    } else {
+      itinHtml += `
+        <div class="day-card sea">
+          <div class="day-card-header">
+            <span class="day-num">DAY ${i}</span>
+            <div class="day-port-name">🌊 종일 항해</div>
+          </div>
+          <div class="day-card-body">
+            <div class="day-desc">오늘은 종일 항해일입니다. 선내의 다양한 시설과 엔터테인먼트를 즐기며 편안한 하루를 보내세요. 수영장, 스파, 피트니스센터, 극장 공연 등 다채로운 프로그램이 준비되어 있습니다.</div>
+          </div>
+        </div>
+      `;
+    }
+  }
+  document.getElementById('itinerary').innerHTML = itinHtml;
+  
+  // === 6. Ship Info ===
+  const accoms = ship.accomodation_types || [];
+  const dining = ship.dining_options || [];
+  const ent = ship.entertainment_types || [];
+  const health = ship.health_fitness_types || [];
+  const kids = ship.kid_teen_types || [];
+  const decks = ship.deckplans || [];
+  
+  document.getElementById('ship-section').innerHTML = `
+    <div class="container">
+      <h2 class="section-title">🚢 ${ship.title} 소개</h2>
+      <p class="section-subtitle">${stripHtml(ship.teaser || '')}</p>
+      
+      <div class="ship-specs">
+        <div class="spec-item"><div class="val">${facts.launch_year || '-'}</div><div class="lbl">취항연도</div></div>
+        <div class="spec-item"><div class="val">${facts.capacity?.toLocaleString() || '-'}</div><div class="lbl">승객정원</div></div>
+        <div class="spec-item"><div class="val">${facts.crew_count?.toLocaleString() || '-'}</div><div class="lbl">승무원</div></div>
+        <div class="spec-item"><div class="val">${facts.gross_tonnage?.toLocaleString() || '-'}</div><div class="lbl">총톤수</div></div>
+        <div class="spec-item"><div class="val">${facts.length || '-'}m</div><div class="lbl">길이</div></div>
+        <div class="spec-item"><div class="val">${facts.deck_count || '-'}층</div><div class="lbl">데크</div></div>
+        <div class="spec-item"><div class="val">${facts.cabin_count?.toLocaleString() || '-'}</div><div class="lbl">객실수</div></div>
+        <div class="spec-item"><div class="val">${facts.speed || '-'}kn</div><div class="lbl">속도</div></div>
+      </div>
+      
+      <!-- Ship Facility Tabs -->
+      <div style="margin-top:40px;">
+        <div class="tabs" id="ship-tabs">
+          <div class="tab active" onclick="switchShipTab(this,'panel-dining')">🍽️ 다이닝 (${dining.length})</div>
+          <div class="tab" onclick="switchShipTab(this,'panel-ent')">🎭 엔터테인먼트 (${ent.length})</div>
+          <div class="tab" onclick="switchShipTab(this,'panel-health')">💆 스파·피트니스 (${health.length})</div>
+          <div class="tab" onclick="switchShipTab(this,'panel-kids')">👶 키즈 (${kids.length})</div>
+          <div class="tab" onclick="switchShipTab(this,'panel-decks')">📐 덱플랜 (${decks.length})</div>
+        </div>
+        
+        <div id="panel-dining" class="tab-panel active">
+          ${dining.slice(0,10).map(d => `
+            <div class="facility-item">
+              ${d.images?.[0] ? `<img src="${d.images[0].href}" alt="${d.name}" loading="lazy">` : ''}
+              <div>
+                <div class="fi-name">${d.name || ''}</div>
+                <div class="fi-desc">${stripHtml(d.description || '').slice(0,150)}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div id="panel-ent" class="tab-panel">
+          ${ent.slice(0,10).map(e => `
+            <div class="facility-item">
+              ${e.images?.[0] ? `<img src="${e.images[0].href}" alt="${e.name}" loading="lazy">` : ''}
+              <div>
+                <div class="fi-name">${e.name || ''}</div>
+                <div class="fi-desc">${stripHtml(e.description || '').slice(0,150)}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div id="panel-health" class="tab-panel">
+          ${health.slice(0,8).map(h => `
+            <div class="facility-item">
+              ${h.images?.[0] ? `<img src="${h.images[0].href}" alt="${h.name}" loading="lazy">` : ''}
+              <div>
+                <div class="fi-name">${h.name || ''}</div>
+                <div class="fi-desc">${stripHtml(h.description || '').slice(0,150)}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div id="panel-kids" class="tab-panel">
+          ${kids.map(k => `
+            <div class="facility-item">
+              ${k.images?.[0] ? `<img src="${k.images[0].href}" alt="${k.name}" loading="lazy">` : ''}
+              <div>
+                <div class="fi-name">${k.name || ''}</div>
+                <div class="fi-desc">${stripHtml(k.description || '').slice(0,150)}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div id="panel-decks" class="tab-panel">
+          <div class="deck-scroll">
+            ${decks.map(d => `
+              <div class="deck-card">
+                ${d.images?.[0] ? `<img src="${d.images[0].href}" alt="${d.name}" loading="lazy">` : ''}
+                <div class="deck-name">${d.name || ''}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // === 7. Cabin & Price ===
+  document.getElementById('cabin-section').innerHTML = `
+    <div class="container">
+      <h2 class="section-title">🛏️ 객실 & 요금</h2>
+      <p class="section-subtitle">1인 기준 요금 (2인 1실 기준, USD)</p>
+      
+      <table class="price-table">
+        <tr><th>객실 타입</th><th>2인실</th><th>1인실</th><th>3인실</th></tr>
+        <tr><td>🚪 내측 (Inside)</td><td class="price-highlight">$${pf(prices?.double?.from_inside)}</td><td>$${pf(prices?.single?.from_inside)}</td><td>$${pf(prices?.triple?.from_inside)}</td></tr>
+        <tr><td>🪟 오션뷰 (Outside)</td><td class="price-highlight">$${pf(prices?.double?.from_outside)}</td><td>$${pf(prices?.single?.from_outside)}</td><td>$${pf(prices?.triple?.from_outside)}</td></tr>
+        <tr><td>🌅 발코니 (Balcony)</td><td class="price-highlight">$${pf(prices?.double?.from_balcony)}</td><td>$${pf(prices?.single?.from_balcony)}</td><td>$${pf(prices?.triple?.from_balcony)}</td></tr>
+        <tr><td>👑 스위트 (Suite)</td><td class="price-highlight">$${pf(prices?.double?.from_suite)}</td><td>$${pf(prices?.single?.from_suite)}</td><td>$${pf(prices?.triple?.from_suite)}</td></tr>
+      </table>
+      <p style="margin-top:12px;font-size:13px;color:#888;">※ 요금은 예고 없이 변동될 수 있습니다. 정확한 요금은 문의해주세요.</p>
+      
+      <h3 style="font-size:18px;font-weight:700;color:var(--navy);margin:32px 0 16px;">객실 타입 안내</h3>
+      <div class="cabin-grid">
+        ${accoms.slice(0,8).map(a => `
+          <div class="cabin-card">
+            ${a.images?.[0] ? `<img src="${a.images[0].href}" alt="${a.name}" loading="lazy">` : ''}
+            <div class="cabin-info">
+              <div class="cabin-name">${a.name || 'Cabin'}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  
+  // Show content
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+}
+
+function pf(v) {
+  return v ? parseFloat(v).toLocaleString() : '-';
+}
+
+function toggleDay(btn) {
+  const exp = btn.nextElementSibling;
+  exp.classList.toggle('open');
+  btn.textContent = exp.classList.contains('open') ? '접기 ▲' : '더보기 ▼';
+}
+
+function switchShipTab(el, panelId) {
+  el.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+}
+
+loadPage().catch(err => {
+  console.error(err);
+  document.getElementById('loading').innerHTML = '<p style="color:red;">데이터 로드 실패</p>';
+});
+</script>
+</body>
+</html>
