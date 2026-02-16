@@ -324,6 +324,112 @@ function portNameKo(name) {
   return map[name] || name;
 }
 
+function countryKo(name) {
+  const map = {'Japan':'일본','Taiwan':'대만','South Korea':'한국','China':'중국'};
+  return map[name] || name;
+}
+
+// === 한글 번역 데이터 ===
+const KO = {
+  shipTeaser: "바다 위의 아름다움 — MSC 벨리시마는 자매선 MSC 메라빌리아에 필적하는 놀라운 시설을 갖추고 있습니다. 혁신적인 MSC for Me 기술로 승객, 승무원, 그리고 선박이 하나로 연결됩니다.",
+  
+  portDesc: {
+    'Tokyo': "빛, 스시, 만화! 끝없이 펼쳐지는 매력적인 일본의 수도 도쿄는 대조의 도시입니다. 신사와 정원은 유명한 번화가와 고층 빌딩 사이에서 고요한 쉼터가 되어줍니다. 소규모 라면집은 서양식 체인 레스토랑, 고급 파인다이닝과 나란히 자리하고 있습니다. 쇼핑을 하면 아름다운 전통 공예품부터 최신 전자기기까지 만날 수 있죠. 가라오케와 사케로 시작하는 밤문화는 테크노 클럽으로 이어집니다. 전통이든 최첨단이든, 도쿄는 모든 것을 제공합니다.",
+    'Kobe': "세토나이카이(내해)의 잔잔한 바다에 위치한 고베는 수백 년간 중요한 항구도시로 기능해왔습니다. 1868년 일본이 수세기의 쇄국 정책을 벗어나며 외국 무역상을 받아들인 최초의 항구 중 하나였습니다. 오늘날 고베에는 98개국 출신의 외국인이 거주하며, 세계적으로 유명한 고베 소고기를 포함한 다양한 요리를 제공하는 레스토랑에서 문화적 다양성을 느낄 수 있습니다. 1995년 한신대지진의 피해를 딛고 더욱 활기차게 부활했으며, 교토와 나라로 향하는 관문 역할도 합니다.",
+    'Kochi': "시코쿠 남쪽 해안에 위치한 고치는 열대 기후와 아름다운 자연으로 유명합니다. 일요 시장은 300년 이상의 역사를 자랑하며, 고치성은 에도시대의 원형을 그대로 간직하고 있습니다. 신선한 가다랑어 타타키가 이 지역의 대표 요리입니다.",
+    'Hiroshima': "역사 애호가라면 히로시마에서 많은 것을 느낄 수 있습니다. 1945년의 파괴에도 불구하고, 이 도시는 평화에 대한 헌신으로 유명합니다. 유네스코 세계문화유산인 평화기념공원에서는 전쟁의 참상을 되새기며 고요한 사색에 잠길 수 있습니다. 평화의 불꽃은 핵무기가 완전히 사라질 때까지 계속 타오를 것입니다. 인근의 미야지마 섬에는 바다 위에 떠 있는 듯한 이쓰쿠시마 신사가 있어 반드시 방문해야 할 명소입니다.",
+    'Beppu': "벳푸는 일본 최대의 온천 도시로, 2,800개가 넘는 온천이 있습니다. '지옥 순례'로 불리는 7개의 독특한 온천을 둘러보는 것이 대표적인 관광 코스입니다. 뜨거운 모래찜질과 진흙탕 등 다양한 온천 체험을 즐길 수 있으며, 도시 곳곳에서 피어오르는 수증기가 이색적인 풍경을 만들어냅니다.",
+    'Naha': "오키나와의 수도 나하는 독특한 류큐 문화와 아열대 기후가 어우러진 매력적인 도시입니다. 슈리성은 류큐 왕국의 영광을 보여주며, 국제거리에서는 활기찬 쇼핑과 먹거리를 즐길 수 있습니다. 투명한 바다와 산호초가 만드는 아름다운 해변도 놓칠 수 없습니다.",
+    'Miyako Islands': "미야코지마는 오키나와 본섬에서 남서쪽으로 약 300km 떨어진 아열대 낙원입니다. 에메랄드빛 바다와 새하얀 백사장이 유명하며, 일본 최고의 해변으로 꼽히는 요나하마에하마 비치가 있습니다. 스노클링과 다이빙으로 풍부한 산호초를 감상할 수 있습니다.",
+    'Keelung (Chilung)': "화려한 불빛의 타이베이 — 문화와 아이디어가 넘치는 미래적 대도시 — 가 가까이 빛나는 지룽은 대만을 방문하는 많은 여행객의 첫 기항지입니다. 지룽은 타이베이의 해상 관문 역할을 하지만, 서둘러 타이베이로 향하기 전에 매일 저녁 활기를 띠는 유명한 야시장을 둘러보세요. 현지 해산물로 유명한 이 야시장은 놓칠 수 없는 명소입니다.",
+    'Kagoshima': "가고시마는 규슈 최남단의 주요 도시이자 가고시마현의 현청 소재지입니다. 온화한 기후와 활화산이라는 공통점 때문에 이탈리아의 자매도시 나폴리와 자주 비교됩니다. 사쿠라지마는 일본뿐 아니라 세계적으로도 유명한 활화산으로, 긴코만 한가운데에 위치하여 가고시마현의 상징입니다."
+  },
+  
+  dining: {
+    'HOLA! Tapas Bar': {name:'올라! 타파스 바', desc:'지중해 요리의 축제를 즐길 수 있는 타파스 바입니다. 셰어링 플레이트로 다양한 지중해 풍미를 경험하세요.'},
+    "Butcher's Cut": {name:'부처스 컷 스테이크하우스', desc:'엄선된 린츠 헤리티지 앵거스 비프를 제공하는 미국식 스테이크하우스. 최고급 앵거스 소고기를 마스터 정육사가 직접 커팅합니다.'},
+    'Kaito Teppanyaki': {name:'카이토 철판구이', desc:'세련된 철판구이 레스토랑. 4개의 쿠킹 스테이션에서 셰프가 눈앞에서 일식 요리를 완성하는 라이브 퍼포먼스를 감상하세요.'},
+    'Marketplace Buffet': {name:'마켓플레이스 뷔페', desc:'다양한 세계 요리를 제공하는 대형 뷔페. 아침·점심·저녁·야식까지 운영되며, 편안한 지중해식 다이닝을 즐길 수 있습니다.'},
+    'MSC Yacht Club Grill & Bar': {name:'MSC 요트클럽 그릴 & 바', desc:'요트클럽 전용 야외 테라스에서 종일 식사와 음료를 즐길 수 있습니다. 아침부터 석양의 칵테일까지.'},
+    'MSC Yacht Club Restaurant': {name:'MSC 요트클럽 레스토랑', desc:'요트클럽 회원 전용 프라이빗 레스토랑. 멋진 바다 전망과 함께 미슐랭급 요리와 5성급 서비스를 경험하세요.'},
+    'Lighthouse Restaurant': {name:'라이트하우스 레스토랑', desc:'6층에 위치한 메인 레스토랑입니다.'},
+    'Posidonia Restaurant': {name:'포시도니아 레스토랑', desc:'5층에 위치한 메인 레스토랑입니다.'},
+    'Kaito Sushi Bar': {name:'카이토 스시 바', desc:'전통과 현대가 만나는 스시 레스토랑. 최고급 신선한 재료로 즉석에서 만드는 정통 아시아 요리를 제공합니다.'},
+    'Il Ciliegio Restaurant': {name:'일 칠리에조 레스토랑', desc:'6층에 위치한 메인 레스토랑입니다.'}
+  },
+  
+  entertainment: {
+    'MSC Yacht Club Top Sail Lounge': {name:'MSC 요트클럽 탑세일 라운지', desc:'선수 쪽에 위치한 요트클럽 전용 라운지. 탁 트인 바다 전망과 함께 최상의 음식과 서비스를 즐기세요.'},
+    'MSC Yacht Club Sundeck and Pool': {name:'MSC 요트클럽 선데크 & 풀', desc:'전용 수영장, 넓은 선데크, 대형 자쿠지를 갖춘 럭셔리 야외 공간입니다.'},
+    'Galleria Bellissima': {name:'갤러리아 벨리시마', desc:'96m 길이의 실내 산책로. 부티크, 레스토랑, 휴식 공간이 가득하며 저녁에는 음악과 파티로 활기를 띱니다.'},
+    'The London Theatre': {name:'더 런던 시어터', desc:'웨스트엔드급 극장. 국제적인 아티스트 라인업의 최고급 쇼를 선상에서 감상할 수 있습니다.'},
+    'Imperial Casino': {name:'임페리얼 카지노', desc:'우아한 디자인의 카지노. 룰렛, 블랙잭, 포커, 슬롯머신 등 다양한 게임을 즐길 수 있습니다.'},
+    'Himalayan Bridge': {name:'히말라얀 브릿지', desc:'해발 60m 높이에서 80m 길이의 현수교를 걸어가는 스릴 넘치는 스카이워크 체험입니다.'},
+    'Bowling ': {name:'볼링장', desc:'가족·친구와 함께 볼링 챔피언을 가려보세요! 신나는 대결이 기다립니다.'},
+    'Virtual Games Arcade': {name:'가상 게임 아케이드', desc:'비디오 게임, 핀볼 등 다양한 클래식 아케이드 게임을 즐길 수 있는 게임존입니다.'},
+    'Boutiques': {name:'부티크 & 면세점', desc:'MSC 로고숍의 한정 기념품, 주얼리 부티크의 팔찌와 시계, 최신 패션 트렌드를 면세가로 만나보세요.'},
+    'Photo Gallery': {name:'포토 갤러리', desc:'전문 포토그래퍼가 촬영한 크루즈 추억 사진을 디지털 패키지로 만나보세요.'}
+  },
+  
+  health: {
+    'MSC Aurea Spa': {name:'MSC 아우레아 스파', desc:'발리니즈 마사지와 뷰티 트리트먼트를 제공하는 럭셔리 스파. 사우나, 월풀, 스팀배스를 갖춘 테르마리아와 뷰티살롱을 완비했습니다.'},
+    'Beauty Salon': {name:'뷰티 살롱', desc:'전문 스탭이 제공하는 미용 트리트먼트로 크루즈를 더욱 특별하게 만들어보세요.'},
+    'Barber Shop': {name:'바버샵', desc:'MSC 아우레아 스파 내 전용 바버샵에서 완벽한 스타일링으로 멋진 저녁을 준비하세요.'},
+    'Hair Salon': {name:'헤어 살롱', desc:'새로운 헤어스타일로 분위기를 바꿔보세요! 샴푸, 컨디셔닝 마스크, 커트, 컬러 트리트먼트 패키지가 준비되어 있습니다.'},
+    'Thermal Area': {name:'테르마리아 (온열 시설)', desc:'사우나, 스팀배스, 월풀 등 온열 시설에서 깊은 웰빙을 경험하세요. 크루즈가 끝난 후에도 남을 완전한 휴식을 선사합니다.'},
+    'Gym by TechnoGym®': {name:'테크노짐® 피트니스센터', desc:'파노라마 오션뷰와 함께 테크노짐® 장비로 운동하세요. 개인 트레이닝도 가능합니다.'},
+    'Power Walking Track': {name:'파워워킹 트랙', desc:'데크 위 파워워킹·조깅 트랙에서 바다 바람을 맞으며 운동하세요.'},
+    'Basketball Court': {name:'농구장', desc:'친구들과 함께 야외 농구장에서 슛을 날려보세요!'}
+  },
+  
+  kids: {
+    'Baby Club 0-3': {name:'베이비 클럽 (0-3세)', desc:'MSC 베이비케어 스태프에게 아이를 맡기거나 함께 즐기세요. 키코 장난감과 음악·리듬 활동으로 호기심을 자극합니다.'},
+    'Mini Club 3-6': {name:'미니 클럽 (3-6세)', desc:'레고® 파트너십으로 풍성해진 놀이 프로그램. 새 친구를 사귀며 게임, 이벤트를 즐기는 공간입니다.'},
+    'Junior Club 7-11': {name:'주니어 클럽 (7-11세)', desc:'마스터셰프 앳 시 주니어, 도레브로 스포츠 등 다양한 활동으로 협동심과 창의력을 키웁니다.'},
+    'Young Club 12-14': {name:'영 클럽 (12-14세)', desc:'스포츠, 발견, 상호작용이 가득한 프로그램. 매일 새로운 경험이 기다립니다.'},
+    'Teen Club 15-17': {name:'틴 클럽 (15-17세)', desc:'스포츠, 댄스 콘테스트, SNS 게임부터 선상 파티까지. 잊지 못할 십대의 추억을 만듭니다.'},
+    'Doremi Lab': {name:'도레미 랩', desc:'18층에 위치한 어린이 체험 공간입니다.'},
+    'Doremi Studio': {name:'도레미 스튜디오', desc:'18층에 위치한 어린이 창작 공간입니다.'},
+    'Kids Club and Family Activities': {name:'키즈클럽 & 가족 활동', desc:'스포츠, 창작, 과학 실험 등 어린이를 위한 다양한 체험 프로그램과 온 가족이 함께하는 활동을 제공합니다.'},
+    'Web Series': {name:'웹 시리즈', desc:'MSC 크루즈 공식 유튜브 채널의 웹 시리즈 "Cabin 12006"으로 크루즈 모험을 미리 만나보세요.'},
+    'Babies and Toddlers Services': {name:'영유아 서비스', desc:'전용 베이비 클럽과 MSC 베이비케어 서비스로 어린 자녀와 함께하는 크루즈도 걱정 없습니다.'},
+    'LEGO® Experience': {name:'레고® 체험', desc:'크루즈마다 한 번 열리는 특별 레고® 이벤트! 온 가족이 함께 즐기는 레고 활동의 날입니다.'},
+    'Family Dining': {name:'패밀리 다이닝', desc:'세계 각국의 요리와 에스닉 스페셜티로 온 가족의 입맛을 사로잡습니다. 어린이 전용 뷔페도 준비되어 있습니다.'},
+    'Family Activities': {name:'가족 활동', desc:'패밀리 게임쇼, 댄스·뮤직·셀카 챌린지 등 온 가족이 함께하는 다채로운 프로그램입니다.'}
+  },
+  
+  cabins: {
+    'MSC Yacht Club Royal Suite': 'MSC 요트클럽 로열 스위트',
+    'MSC Yacht Club Duplex Suite with Whirlpool': 'MSC 요트클럽 듀플렉스 스위트 (월풀)',
+    'MSC Yacht Club Deluxe Suite': 'MSC 요트클럽 디럭스 스위트',
+    'MSC Yacht Club Interior Suite': 'MSC 요트클럽 인테리어 스위트',
+    'Grand Suite Aurea with Terrace and Whirlpool': '그랜드 스위트 아우레아 (테라스+월풀)',
+    'Premium Suite Aurea with Terrace and Whirlpool': '프리미엄 스위트 아우레아 (테라스+월풀)',
+    'Premium Suite Aurea': '프리미엄 스위트 아우레아',
+    'Deluxe Balcony Aurea': '디럭스 발코니 아우레아'
+  },
+  
+  decks: {
+    'Deck 19 - Splendida':'19층 스플렌디다','Deck 18 - Divina':'18층 디비나',
+    'Deck 16 - Seaview':'16층 시뷰','Deck 15 - Preziosa':'15층 프레지오사',
+    'Deck 14 - Divina':'14층 디비나','Deck 13 - Magnifica':'13층 마니피카',
+    'Deck 12 - Grandiosa':'12층 그란디오사','Deck 11 - Bellissima':'11층 벨리시마',
+    'Deck 10 - Seaside Evo':'10층 시사이드 에보','Deck 9 - Seaside':'9층 시사이드',
+    'Deck 8 - Meraviglia':'8층 메라빌리아','Deck 7 - Fantasia':'7층 판타지아',
+    'Deck 6 - Lirica':'6층 리리카','Deck 5 - Sinfonia':'5층 신포니아',
+    'Deck 4 - Lirica':'4층 리리카'
+  }
+};
+
+// Translation helpers
+function trPort(name) { return KO.portDesc[name] || ''; }
+function trDining(name) { return KO.dining[name] || null; }
+function trEnt(name) { return KO.entertainment[name] || null; }
+function trHealth(name) { return KO.health[name] || null; }
+function trKids(name) { return KO.kids[name] || null; }
+function trCabin(name) { return KO.cabins[name] || name; }
+function trDeck(name) { return KO.decks[name] || name; }
+
 async function loadPage() {
   const [cruise, ship] = await Promise.all([
     apiFetch(`holidays/dates/${CRUISE_REF}.json`),
@@ -403,7 +509,7 @@ async function loadPage() {
         <span>📅 ${from.getFullYear()}.${String(from.getMonth()+1).padStart(2,'0')}.${String(from.getDate()).padStart(2,'0')} ~ ${to.getFullYear()}.${String(to.getMonth()+1).padStart(2,'0')}.${String(to.getDate()).padStart(2,'0')}</span>
         <span>🌙 ${nights}박 ${nights+1}일</span>
         <span>🚢 ${ship.title}</span>
-        <span>🌏 ${(cruise.countries||[]).join(', ')}</span>
+        <span>🌏 ${(cruise.countries||[]).map(c => countryKo(c)).join(', ')}</span>
       </div>
       <div class="hero-tags">
         <span class="hero-tag">#일본크루즈</span>
@@ -448,37 +554,33 @@ async function loadPage() {
     if(d && d.locations?.[0]) {
       const loc = d.locations[0];
       const portName = portNameKo(loc.name);
-      const desc = stripHtml(loc.widgety_data?.description || '');
+      const descEn = stripHtml(loc.widgety_data?.description || '');
+      const desc = trPort(loc.name) || descEn;
       const images = loc.widgety_data?.images || loc.operator_data?.images || [];
       const mainImg = images[0]?.href;
       const arrTime = loc.arrival_time || '';
       const depTime = loc.departure_time || '';
       const timeStr = arrTime && depTime ? `${arrTime} 입항 ~ ${depTime} 출항` : depTime ? `${depTime} 출항` : arrTime ? `${arrTime} 입항` : '';
+      const countryName = countryKo(loc.country);
       
       itinHtml += `
         <div class="day-card">
           <div class="day-card-header">
             <span class="day-num">DAY ${i}</span>
             <div>
-              <div class="day-port-name">📍 ${portName} <span style="font-size:14px;font-weight:400;color:#666;">${loc.country}</span></div>
+              <div class="day-port-name">📍 ${portName} <span style="font-size:14px;font-weight:400;color:#666;">${countryName}</span></div>
               ${timeStr ? `<div class="day-time">⏰ ${timeStr}</div>` : ''}
             </div>
           </div>
           ${mainImg ? `<img class="day-card-image" src="${mainImg}" alt="${portName}" loading="lazy">` : ''}
           <div class="day-card-body">
-            <div class="day-desc">${desc.slice(0, 300)}${desc.length > 300 ? '...' : ''}</div>
+            <div class="day-desc">${desc}</div>
             ${images.length > 1 ? `
               <div class="day-images">
                 ${images.slice(1, 4).map(img => `<img src="${img.href}" alt="${img.name || portName}" loading="lazy">`).join('')}
               </div>
             ` : ''}
           </div>
-          ${desc.length > 300 ? `
-            <button class="day-toggle" onclick="toggleDay(this)">더보기 ▼</button>
-            <div class="day-expandable">
-              <div class="day-desc">${desc}</div>
-            </div>
-          ` : ''}
         </div>
       `;
     } else {
@@ -508,7 +610,7 @@ async function loadPage() {
   document.getElementById('ship-section').innerHTML = `
     <div class="container">
       <h2 class="section-title">🚢 ${ship.title} 소개</h2>
-      <p class="section-subtitle">${stripHtml(ship.teaser || '')}</p>
+      <p class="section-subtitle">${KO.shipTeaser}</p>
       
       <div class="ship-specs">
         <div class="spec-item"><div class="val">${facts.launch_year || '-'}</div><div class="lbl">취항연도</div></div>
@@ -532,51 +634,55 @@ async function loadPage() {
         </div>
         
         <div id="panel-dining" class="tab-panel active">
-          ${dining.slice(0,10).map(d => `
-            <div class="facility-item">
+          ${dining.slice(0,10).map(d => {
+            const tr = trDining(d.name);
+            return `<div class="facility-item">
               ${d.images?.[0] ? `<img src="${d.images[0].href}" alt="${d.name}" loading="lazy">` : ''}
               <div>
-                <div class="fi-name">${d.name || ''}</div>
-                <div class="fi-desc">${stripHtml(d.description || '').slice(0,150)}</div>
+                <div class="fi-name">${tr ? tr.name : d.name}</div>
+                <div class="fi-desc">${tr ? tr.desc : stripHtml(d.description||'').slice(0,150)}</div>
               </div>
-            </div>
-          `).join('')}
+            </div>`;
+          }).join('')}
         </div>
         
         <div id="panel-ent" class="tab-panel">
-          ${ent.slice(0,10).map(e => `
-            <div class="facility-item">
+          ${ent.slice(0,10).map(e => {
+            const tr = trEnt(e.name);
+            return `<div class="facility-item">
               ${e.images?.[0] ? `<img src="${e.images[0].href}" alt="${e.name}" loading="lazy">` : ''}
               <div>
-                <div class="fi-name">${e.name || ''}</div>
-                <div class="fi-desc">${stripHtml(e.description || '').slice(0,150)}</div>
+                <div class="fi-name">${tr ? tr.name : e.name}</div>
+                <div class="fi-desc">${tr ? tr.desc : stripHtml(e.description||'').slice(0,150)}</div>
               </div>
-            </div>
-          `).join('')}
+            </div>`;
+          }).join('')}
         </div>
         
         <div id="panel-health" class="tab-panel">
-          ${health.slice(0,8).map(h => `
-            <div class="facility-item">
+          ${health.slice(0,8).map(h => {
+            const tr = trHealth(h.name);
+            return `<div class="facility-item">
               ${h.images?.[0] ? `<img src="${h.images[0].href}" alt="${h.name}" loading="lazy">` : ''}
               <div>
-                <div class="fi-name">${h.name || ''}</div>
-                <div class="fi-desc">${stripHtml(h.description || '').slice(0,150)}</div>
+                <div class="fi-name">${tr ? tr.name : h.name}</div>
+                <div class="fi-desc">${tr ? tr.desc : stripHtml(h.description||'').slice(0,150)}</div>
               </div>
-            </div>
-          `).join('')}
+            </div>`;
+          }).join('')}
         </div>
         
         <div id="panel-kids" class="tab-panel">
-          ${kids.map(k => `
-            <div class="facility-item">
+          ${kids.map(k => {
+            const tr = trKids(k.name);
+            return `<div class="facility-item">
               ${k.images?.[0] ? `<img src="${k.images[0].href}" alt="${k.name}" loading="lazy">` : ''}
               <div>
-                <div class="fi-name">${k.name || ''}</div>
-                <div class="fi-desc">${stripHtml(k.description || '').slice(0,150)}</div>
+                <div class="fi-name">${tr ? tr.name : k.name}</div>
+                <div class="fi-desc">${tr ? tr.desc : stripHtml(k.description||'').slice(0,150)}</div>
               </div>
-            </div>
-          `).join('')}
+            </div>`;
+          }).join('')}
         </div>
         
         <div id="panel-decks" class="tab-panel">
@@ -584,7 +690,7 @@ async function loadPage() {
             ${decks.map(d => `
               <div class="deck-card">
                 ${d.images?.[0] ? `<img src="${d.images[0].href}" alt="${d.name}" loading="lazy">` : ''}
-                <div class="deck-name">${d.name || ''}</div>
+                <div class="deck-name">${trDeck(d.name)}</div>
               </div>
             `).join('')}
           </div>
@@ -614,7 +720,7 @@ async function loadPage() {
           <div class="cabin-card">
             ${a.images?.[0] ? `<img src="${a.images[0].href}" alt="${a.name}" loading="lazy">` : ''}
             <div class="cabin-info">
-              <div class="cabin-name">${a.name || 'Cabin'}</div>
+              <div class="cabin-name">${trCabin(a.name)}</div>
             </div>
           </div>
         `).join('')}
